@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import Counter from '../DumpComponent/Counter';
+import { Component } from 'react';
 
 export default class CounterContainer extends Component {
   state = {
@@ -11,7 +10,13 @@ export default class CounterContainer extends Component {
 
   render() {
     return (
-      <Counter {...this.state} decrement={this.decrement} increment={this.increment} />
+      this.props.children(
+        {
+          count: this.state.count,
+          decrement: this.decrement,
+          increment: this.increment
+        }
+      )
     );
   }
 }
