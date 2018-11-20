@@ -1,16 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import Counter from './Counter';
-import './App.css';
+import CounterContainer from './Container/CounterContainer';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Counter step={5} />
-      </div>
-    );
-  }
-}
-
-export default App;
+export const App = () => <CounterContainer />
