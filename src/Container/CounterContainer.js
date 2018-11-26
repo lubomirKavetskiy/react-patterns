@@ -10,13 +10,14 @@ export default class CounterContainer extends Component {
 
   render() {
     return (
-      this.props.children(
-        {
+      this.props.children({
+        className: `${this.state.count > 0 ? 'started' : 'not-started'} ${this.props.className}`,
+        counterProps: {
           count: this.state.count,
           decrement: this.decrement,
           increment: this.increment
         }
-      )
+      })
     );
   }
 }
