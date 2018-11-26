@@ -12,11 +12,17 @@ export default class CounterContainer extends Component {
     return (
       this.props.children({
         className: `${this.state.count > 0 ? 'started' : 'not-started'} ${this.props.className}`,
-        counterProps: {
-          count: this.state.count,
-          decrement: this.decrement,
-          increment: this.increment
-        }
+        getCounterProps: ({ onClick, map }) => ({
+          count: map(this.state.count),
+          decrement: () => {
+            this.decrement();
+            onClick();
+          },
+          increment: () => {
+            this.increment();
+            onClick();
+          }
+        })
       })
     );
   }
