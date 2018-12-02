@@ -1,22 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Tabs from './Tab';
 
-import CounterContainer from './Container/CounterContainer';
 
-const sendAnalitics = () => console.log('sent analitic');
+export default class App extends Component {
+  render() {
+    return (
+      <Tabs>
+        <Tabs.Tab title="Tab 1">
+          1 1 1 1 1 1 1 1 1 1 1 1 1 1
+        </Tabs.Tab>
 
-export const App = () =>
-  <CounterContainer className="counter">
-    {({ className, getCounterProps }) => {
-      const counterProps = getCounterProps({
-        onClick: () => sendAnalitics(),
-        map: counter => counter * 2,
-      });
+        <Tabs.Tab title="Tab 2">
+          2 2 2 2 2 2 2 2 2 2 2 2 2 2
+        </Tabs.Tab>
 
-      return (<div className={className}>
-        <button onClick={counterProps.decrement}>-</button>
-        {counterProps.count}
-        <button onClick={counterProps.increment}>+</button>
-      </div>)
-    }
-    }
-  </CounterContainer>
+        <Tabs.Tab title="Tab 3">
+          3 3 3 3 3 3 3 3 3 3 3 3 3 3
+        </Tabs.Tab>
+      </Tabs>
+    );
+  }
+}
