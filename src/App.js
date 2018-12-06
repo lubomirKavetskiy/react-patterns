@@ -1,20 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Counter from './Counter';
 
-import CounterContainer from './Container/CounterContainer';
+export default class App extends Component {
+  handleChange = (count) => console.log(1, count);
 
-// insted of div, here can be some Component
-const renderMethod = c => <div>{c}</div>;
+  render() {
+    return (
+      <Counter onChange={this.handleChange} />
+    );
+  }
+}
 
-export const App = () =>
-  // this.props.method
-  <CounterContainer method={renderMethod}>
-    {
-      // this.props.children
-      ({ count, increment, decrement }) =>
-        <>
-          <button onClick={decrement}>-</button>
-          {count}
-          <button onClick={increment}>+</button>
-        </>
-    }
-  </CounterContainer>
