@@ -2,18 +2,34 @@ import React, { Component } from 'react';
 
 export default class Counter extends Component {
   state = {
-    count: this.props.count || 0
+    // if to make like this: count: this.props.count || 0 => 
+    // state will change by props, but it will not rerendr component
+    count: 0
   }
 
-  decrement = () => this.setState(state => ({ count: state.count - 1 }))
-  increment = () => this.setState(state => ({ count: state.count + 1 }))
+  // we use 'get' for don't call this function isControled() 
+  get isControled() {
+    return this.props.count !== undefined;
+  }
+
+  getState = () => this.isControled ? this.props : this.state;
+
+  change = value => {
+    // 
+    if (this.isControled) return this.props.onChange(this.getState().count + value);
+    return this.setState({ count: this.getState().count + value });
+  }
+
+  decrement = () => this.change(-1);
+  increment = () => this.change(1);
 
   render() {
-    const { count } = this.state;
     return (
       <>
         <button onClick={this.decrement}>-</button>
-        <span>{count}</span>
+        {/* we can't write like this: <span>{this.state.count}</span>,
+        because component wont rerender after changing state */}
+        <span>{this.getState().count}</span>
         <button onClick={this.increment}>+</button>
       </>
     );
